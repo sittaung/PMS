@@ -53,7 +53,8 @@ class PermissionsController extends Controller
         }
         Permission::create($request->all());
 
-        return redirect()->route('admin.permissions.index');
+        return redirect()->route('admin.permissions.index')
+            ->with('flash_message', 'Permission successfully added.');
     }
 
 
@@ -88,7 +89,8 @@ class PermissionsController extends Controller
         $permission = Permission::findOrFail($id);
         $permission->update($request->all());
 
-        return redirect()->route('admin.permissions.index');
+        return redirect()->route('admin.permissions.index')
+            ->with('flash_message', 'Permission successfully edited.');
     }
 
 
@@ -106,7 +108,8 @@ class PermissionsController extends Controller
         $permission = Permission::findOrFail($id);
         $permission->delete();
 
-        return redirect()->route('admin.permissions.index');
+        return redirect()->route('admin.permissions.index')
+            ->with('flash_message', 'Permission successfully deleted.');
     }
 
     /**

@@ -7,6 +7,13 @@
         <a href="{{ route('admin.users.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
     </p>
 
+    @if (Session::has('flash_message'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <em>{!! session('flash_message') !!}</em>
+        </div>
+    @endif
+
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('global.app_list')
@@ -40,13 +47,13 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    <a href="{{ route('admin.users.edit',[$user->id]) }}" class="btn btn-sm btn-info">@lang('global.app_edit')</a>
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
                                         'route' => ['admin.users.destroy', $user->id])) !!}
-                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-sm btn-danger')) !!}
                                     {!! Form::close() !!}
                                 </td>
 

@@ -58,7 +58,8 @@ class RolesController extends Controller
         $permissions = $request->input('permission') ? $request->input('permission') : [];
         $role->givePermissionTo($permissions);
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.index')
+            ->with('flash_message', 'Role successfully added.');
     }
 
 
@@ -97,7 +98,8 @@ class RolesController extends Controller
         $permissions = $request->input('permission') ? $request->input('permission') : [];
         $role->syncPermissions($permissions);
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.index')
+            ->with('flash_message', 'Role successfully edited.');
     }
 
 
@@ -115,7 +117,8 @@ class RolesController extends Controller
         $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.index')
+            ->with('flash_message', 'Role successfully deleted.');
     }
 
     /**

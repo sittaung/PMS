@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Roles-Permissions Manager',
+    'name' => env('APP_NAME', 'Roles-Permissions Manager'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Rangoon',
 
     /*
      |--------------------------------------------------------------------------

@@ -21,6 +21,7 @@ class UsersController extends Controller
     {
         if (! Gate::allows('users_manage')) {
             return abort(401);
+//            return response('Permission Denied.', 403);
         }
 
         $users = User::all();
@@ -46,7 +47,7 @@ class UsersController extends Controller
     /**
      * Store a newly created User in storage.
      *
-     * @param  \App\Http\Requests\StoreUsersRequest  $request
+     * @param  \App\Http\Requests\Admin\StoreUsersRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreUsersRequest $request)
@@ -58,7 +59,8 @@ class UsersController extends Controller
         $roles = $request->input('roles') ? $request->input('roles') : [];
         $user->assignRole($roles);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')
+            ->with('flash_message', 'User successfully added.');
     }
 
 
@@ -83,7 +85,7 @@ class UsersController extends Controller
     /**
      * Update User in storage.
      *
-     * @param  \App\Http\Requests\UpdateUsersRequest  $request
+     * @param  \App\Http\Requests\Admin\UpdateUsersRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -97,7 +99,8 @@ class UsersController extends Controller
         $roles = $request->input('roles') ? $request->input('roles') : [];
         $user->syncRoles($roles);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')
+            ->with('flash_message', 'User successfully edited.');
     }
 
     /**
@@ -114,7 +117,8 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')
+            ->with('flash_message', 'User successfully deleted.');
     }
 
     /**

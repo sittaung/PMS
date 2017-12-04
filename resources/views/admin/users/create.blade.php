@@ -62,7 +62,8 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-success']) !!}
+    <a href="{{ route('admin.users.index') }}" class="btn btn-danger">{!! trans('global.app_cancel') !!}</a>
     {!! Form::close() !!}
 @stop
 
