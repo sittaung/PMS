@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xs-6 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     {!! Form::label('name', 'Name*', ['class' => 'control-label']) !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                    {!! Form::text('name', $project->name, ['class' => 'form-control']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('name'))
                         <p class="help-block">
@@ -102,7 +102,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-                    <textarea name="description" class="form-control"></textarea>
+                    <textarea name="description" class="form-control" rows="5">{{ $project->description }}</textarea>
                 </div>
             </div>
         </div>

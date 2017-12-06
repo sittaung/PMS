@@ -11,13 +11,13 @@
                         <div class="col-xs-12 col-sm-4">
                             <div class="jumbotron text-center">
                                 <p class="dim">Clients</p>
-                                <h1>{{ $clients }}</h1>
+                                <h1>{{ $total_clients }}</h1>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-4">
                             <div class="jumbotron text-center">
                                 <p class="dim">Projects</p>
-                                <h1>{{ $projects }}</h1>
+                                <h1>{{ $total_projects }}</h1>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-4">
@@ -26,6 +26,10 @@
                                 <h1>3</h1>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        {!! $gantt !!}
                     </div>
                 </div>
             </div>

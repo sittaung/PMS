@@ -88,7 +88,13 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        //
+        if (!Gate::allows('projects_manage')) {
+            return abort(401);
+        }
+
+        $project = Project::findOrFail($id);
+
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -106,7 +112,7 @@ class ProjectsController extends Controller
         $clients = Client::select('id', 'name')->get();
         $users = User::permission('projects_manage')->get();
         $project = Project::findOrFail($id);
-        $statuses = ['open', 'active', 'pending', 'completed', 'closed'];
+        $statuses = ['Open', 'Active', 'Pending', 'Completed', 'Closed'];
 
         return view('admin.projects.edit', compact('clients', 'users', 'project', 'statuses'));
     }
@@ -127,6 +133,7 @@ class ProjectsController extends Controller
 
         $start_date = Carbon::parse($request->input('start_date'));
         $end_date = Carbon::parse($request->input('end_date'));
+
 //        $days = $end_date->diffInDays($start_date);
         $days = $start_date->diffInDaysFiltered(function (Carbon $date) {
             return !$date->isWeekend();

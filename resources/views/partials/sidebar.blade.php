@@ -30,14 +30,55 @@
                 </li>
             @endcan
 
+            @can('tasks_manage')
+                <li class="{{ $request->segment(2) == 'tasks' ? 'active' : '' }}">
+                    <a href="{{ route('admin.tasks.index') }}">
+                        <i class="fa fa-tasks"></i>
+                        <span class="title">Tasks</span>
+                    </a>
+                </li>
+            @endcan
+
+            {{--@can('tasks_manage')--}}
+                {{--<li class="treeview">--}}
+                    {{--<a href="#">--}}
+                        {{--<i class="fa fa-tasks"></i>--}}
+                        {{--<span class="title">Tasks</span>--}}
+                        {{--<span class="pull-right-container">--}}
+            {{--<i class="fa fa-angle-left pull-right"></i>--}}
+            {{--</span>--}}
+                    {{--</a>--}}
+
+                    {{--<ul class="treeview-menu">--}}
+                        {{--<li class="{{ $request->segment(2) == 'tasks' ? 'active active-sub' : '' }}">--}}
+                            {{--<a href="#">--}}
+                                {{--<i class="fa fa-shield"></i>--}}
+                                {{--<span class="title">--}}
+            {{--Tasks--}}
+            {{--</span>--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+
+                        {{--<li class="{{ $request->segment(2) == 'sub-tasks' ? 'active active-sub' : '' }}">--}}
+                            {{--<a href="#">--}}
+                                {{--<i class="fa fa-shield"></i>--}}
+                                {{--<span class="title">--}}
+            {{--Sub Tasks--}}
+            {{--</span>--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+            {{--@endcan--}}
+
             @can('users_manage')
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-users"></i>
                         <span class="title">@lang('global.user-management.title')</span>
                         <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
 

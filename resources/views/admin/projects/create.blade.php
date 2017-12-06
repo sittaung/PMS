@@ -26,7 +26,7 @@
                 <div class="col-xs-6 form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
                     {!! Form::label('client_id', 'Client Name*', ['class' => 'control-label']) !!}
                     {{--{!! Form::select('client_id', $clients, old('clients'), ['class' => 'form-control']) !!}--}}
-                    <select name="client_id" class="form-control" id="client_id">
+                    <select name="client_id" class="form-control js-example-basic-single" id="client_id">
                         <option value="">-- Please select --</option>
                         @foreach ($clients as $client)
                             <option value="{{ $client->id }}" {{ old('client_id') == $client->id ? "selected" : "" }}>{{ $client->name }}</option>
@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
                     {!! Form::label('user_id', 'Project Manager*', ['class' => 'control-label']) !!}
-                    <select name="user_id" class="form-control" id="user_id">
+                    <select name="user_id" class="form-control js-example-basic-single" id="user_id">
                         <option value="">-- Please select --</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? "selected" : "" }}>{{ $user->name }}</option>
@@ -102,7 +102,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-                    <textarea name="description" class="form-control"></textarea>
+                    <textarea name="description" class="form-control" rows="5"></textarea>
                 </div>
             </div>
         </div>
@@ -119,6 +119,8 @@
             $( ".datepicker" ).datepicker({
                 dateFormat: 'yy-mm-dd',
             });
+
+            $(".js-example-basic-single").select2();
         });
     </script>
 @endsection

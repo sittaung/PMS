@@ -2,9 +2,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.projects.title')</h3>
+    <h3 class="page-title">Tasks</h3>
     <p>
-        <a href="{{ route('admin.projects.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
+        <a href="{{ route('admin.tasks.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
     </p>
 
     @if (Session::has('flash_message'))
@@ -20,43 +20,46 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($projects) > 0 ? 'datatable' : '' }} dt-select">
+            <table class="table table-bordered table-striped {{ count($tasks) > 0 ? 'datatable' : '' }} dt-select">
                 <thead>
                 <tr>
                     <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
-
-                    <th width="150">@lang('global.projects.fields.name')</th>
-                    <th>@lang('global.projects.fields.client_name')</th>
-                    <th>@lang('global.projects.fields.start_date') (Y-m-d)</th>
-                    <th>@lang('global.projects.fields.end_date') (Y-m-d)</th>
-                    <th>PM</th>
-                    <th>Working Days</th>
-                    <th width="40">Status</th>
+                    <th>Subject</th>
+                    <th>Project Name</th>
+                    <th>Assignee</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Start Date</th>
+                    <th>Due Date</th>
+                    <th>Estimated Hours</th>
+                    <th>Actual Hours</th>
                     <th>&nbsp;</th>
 
                 </tr>
                 </thead>
 
                 <tbody>
-                @if (count($projects) > 0)
-                    @foreach ($projects as $project)
-                        <tr data-entry-id="{{ $project->id }}">
+                @if (count($tasks) > 0)
+                    @foreach ($tasks as $task)
+                        <tr data-entry-id="{{ $task->id }}">
                             <td></td>
-
-                            <td><a href="{{ route('admin.projects.show',[$project->id]) }}">{{ $project->name }}</a></td>
-                            <td>{{ $project->client->name }}</td>
-                            <td>{{ $project->start_date }}</td>
-                            <td>{{ $project->end_date }}</td>
-                            <td>{{ $project->user->name }}</td>
-                            <td>{{ $project->days }}</td>
-                            <td>{{ $project->status }}</td>
+                            {{--<td><a href="{{ route('admin.tasks.show',[$task->id]) }}">{{ $task->subject }}</a></td>--}}
+                            <td>{{ $task->subject }}</td>
+                            <td>{{ $task->project->name }}</td>
+                            <td>{{ $task->assignee->name }}</td>
+                            <td>{{ $task->status }}</td>
+                            <td>{{ $task->priority }}</td>
+                            <td>{{ $task->start_date }}</td>
+                            <td>{{ $task->due_date }}</td>
+                            <td>{{ $task->estimated_hours }}</td>
+                            <td>{{ $task->actual_hours }}</td>
                             <td>
-                                <a href="{{ route('admin.projects.edit',[$project->id]) }}" class="btn btn-sm btn-info">@lang('global.app_edit')</a>
+                                <a href="{{ route('admin.tasks.edit',[$task->id]) }}" class="btn btn-sm btn-info">@lang('global.app_edit')</a>
                                 {!! Form::open(array(
                                     'style' => 'display: inline-block;',
                                     'method' => 'DELETE',
                                     'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
-                                    'route' => ['admin.projects.destroy', $project->id])) !!}
+                                    'route' => ['admin.tasks.destroy', $task->id])) !!}
                                 {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-sm btn-danger')) !!}
                                 {!! Form::close() !!}
                             </td>
@@ -75,6 +78,6 @@
 
 @section('javascript')
     <script>
-        window.route_mass_crud_entries_destroy = '{{ route('admin.projects.mass_destroy') }}';
+        window.route_mass_crud_entries_destroy = '{{ route('admin.tasks.mass_destroy') }}';
     </script>
 @endsection

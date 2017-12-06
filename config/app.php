@@ -182,6 +182,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Swatkins\LaravelGantt\GanttServiceProvider::class,
         
         /*
          * Application Service Providers...

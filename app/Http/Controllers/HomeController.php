@@ -6,6 +6,8 @@ use App\Client;
 use App\Http\Requests;
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Swatkins\LaravelGantt\Gantt;
 
 class HomeController extends Controller
 {
@@ -26,8 +28,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $projects = Project::count();
-        $clients = Client::count();
-        return view('home', compact('clients', 'projects'));
+        $total_projects = Project::count();
+        $total_clients = Client::count();
+
+        $select = 'name as label,start_date as start,end_date as end';
+        $projects = Project::select(DB::raw($select))
+            ->orderBy('start', 'asc')
+            ->orderBy('end', 'asc')
+            ->get();
+
+        $gantt = new Gantt($projects->toArray(), [
+            'title' => 'Projects',
+            'cellwidth' => 25,
+            'cellheight' => 35
+        ]);
+
+        return view('home', compact('total_projects', 'total_clients', 'projects', 'gantt'));
     }
 }
