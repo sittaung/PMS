@@ -23,13 +23,13 @@
                         <div class="col-xs-12 col-sm-4">
                             <div class="jumbotron text-center">
                                 <p class="dim">Tasks</p>
-                                <h1>3</h1>
+                                <h1>{{ $total_tasks }}</h1>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        {!! $gantt !!}
+                        {{--{!! $gantt !!}--}}
                     </div>
                 </div>
             </div>

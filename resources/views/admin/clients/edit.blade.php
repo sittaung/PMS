@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     {!! Form::label('name', 'Name*', ['class' => 'control-label']) !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    {!! Form::text('name', $client->name, ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('name'))
                         <p class="help-block">
@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     {!! Form::label('email', 'Email*', ['class' => 'control-label']) !!}
-                    {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    {!! Form::email('email', $client->email, ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('email'))
                         <p class="help-block">
@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
                     {!! Form::label('phone_number', 'Phone Number*', ['class' => 'control-label']) !!}
-                    {!! Form::text('phone_number', old('phone_number'), ['class' => 'form-control']) !!}
+                    {!! Form::text('phone_number', $client->phone_number, ['class' => 'form-control']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('phone_number'))
                         <p class="help-block">
@@ -51,7 +51,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-                    <textarea name="description" class="form-control">{{ old('description') }}</textarea>
+                    <textarea name="description" class="form-control">{{ $client->description }}</textarea>
                 </div>
             </div>
         </div>
@@ -62,4 +62,3 @@
     {!! Form::close() !!}
 
 @stop
-

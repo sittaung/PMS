@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('days')->default(0);
-            $table->string('status')->default('open');
+            $table->string('status')->default('Open');
             $table->integer('user_id')->unsinged();
             $table->text('description')->nullable();
             $table->timestamps();

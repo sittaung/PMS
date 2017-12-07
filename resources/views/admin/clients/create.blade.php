@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
                     {!! Form::label('phone_number', 'Phone Number*', ['class' => 'control-label']) !!}
-                    <input type="text" name="phone_number" class="form-control" />
+                    <input type="text" name="phone_number" class="form-control" value="{{ old('phone_number') }}" />
                     <p class="help-block"></p>
                     @if($errors->has('phone_number'))
                         <p class="help-block">
